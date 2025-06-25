@@ -11,7 +11,8 @@
 		"format": "prettier . --write",
 		"format:check": "prettier --check .",
 		"stylelint": "stylelint 'src/**/*.{css,scss}'",
-		"stylelint:fix": "stylelint 'src/**/*.{css,scss}' --fix"
+		"stylelint:fix": "stylelint 'src/**/*.{css,scss}' --fix",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"react": "^19.0.0",
@@ -26,6 +27,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9",
 		"eslint-config-next": "15.3.4",
+		"husky": "^9.1.7",
 		"prettier": "^3.6.1",
 		"stylelint": "^16.21.0",
 		"stylelint-config-recess-order": "^7.1.0",
