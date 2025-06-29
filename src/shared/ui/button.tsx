@@ -1,5 +1,6 @@
-import { type ComponentProps } from 'react';
+import { MouseEvent, useState, type ComponentProps } from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { Loader2Icon } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/shared/lib/utils';
@@ -35,11 +36,34 @@ export const buttonVariants = cva(
 type ButtonProps = ComponentProps<'button'> &
 	VariantProps<typeof buttonVariants> & {
 		asChild?: boolean;
+		loading?: boolean;
 	};
 
 export function Button(props: ButtonProps) {
-	const { className, variant, size, asChild = false, ...restProps } = props;
+	const { className, variant, size, asChild = false, disabled, children, loading, onClick, ...restProps } = props;
+	const [isLoading, setIsLoading] = useState(false);
 	const Component = asChild ? Slot : 'button';
 
-	return <Component data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...restProps} />;
+	const handleClick = async (event: MouseEvent<HTMLButtonElement>) => {
+		try {
+			setIsLoading(true);
+			await onClick?.(event);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	return (
+		<Component
+			data-slot="button"
+			aria-busy={loading || isLoading}
+			className={cn(buttonVariants({ variant, size, className }))}
+			disabled={isLoading || disabled}
+			onClick={handleClick}
+			{...restProps}
+		>
+			{children}
+			{(loading || isLoading) && <Loader2Icon className="animate-spin" />}
+		</Component>
+	);
 }
