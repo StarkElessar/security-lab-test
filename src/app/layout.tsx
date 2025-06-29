@@ -32,8 +32,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
 						<Container>Header</Container>
 					</header>
 					<div className="grow-1">{children}</div>
-					<footer className="py-10 bg-gray-800">
-						<Container>Footer</Container>
+					<footer className="py-10 bg-gray-900">
+						<Container>
+							<div className="text-white">Footer</div>
+						</Container>
 					</footer>
 				</div>
 			</body>
