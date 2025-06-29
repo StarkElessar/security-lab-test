@@ -11,7 +11,7 @@ interface UserCreateFormProps {
 	onSubmitSuccess?: () => void;
 }
 
-export const UserCreateForm = ({ onSubmitSuccess }: UserCreateFormProps) => {
+export const UserCreateFormNew = ({ onSubmitSuccess }: UserCreateFormProps) => {
 	const form = useForm<UserCreateFormData>({
 		resolver: zodResolver(userCreateSchema),
 		defaultValues: {
