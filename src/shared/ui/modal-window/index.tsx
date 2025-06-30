@@ -15,7 +15,7 @@ interface ModalProps {
 	defaultOpen?: boolean;
 }
 
-export const Modal = ({ children, defaultOpen }: ModalProps) => {
+const Modal = ({ children, defaultOpen }: ModalProps) => {
 	return (
 		<Provider defaultOpen={defaultOpen}>
 			<Root>{children}</Root>
